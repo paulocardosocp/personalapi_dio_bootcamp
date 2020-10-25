@@ -8,6 +8,9 @@ import one.digitalinnovation.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PersonService {
 
@@ -32,5 +35,20 @@ public class PersonService {
                 .builder()
                 .message("Pessoa criada com ID " + savedPerson.getId())
                 .build();
+    }
+
+    public List<PersonDTO> listAll() {
+        /* codigo substituido
+        List<PersonDTO> personDTOList = new ArrayList<>();
+        List<Person> personList = personRepository.findAll();
+        for (Person person : personList) {
+            PersonDTO personDTO = personMapper.toDTO(person);
+            personDTOList.add(personDTO);
+        }
+        */
+
+        return personRepository.findAll().stream()
+                .map(personMapper::toDTO) //.map(person -> personMapper.toDTO(person))
+                .collect(Collectors.toList());
     }
 }
