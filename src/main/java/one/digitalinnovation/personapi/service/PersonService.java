@@ -29,12 +29,22 @@ public class PersonService {
                 .birthDate(personDTO.getBirthDate()) //ainda teria que ser feita a conversao DateToString
                 .build();
         */
-        Person personToSave = personMapper.toModel(personDTO);
+        return save(personDTO, "Pessoa criada com o ID ");
+    }
 
+    public MessageResponseDTO updatePerson(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+        verifyIfExists(id);
+
+        return save(personDTO, "Pessoa atualizada com ID ");
+    }
+
+    private MessageResponseDTO save(PersonDTO personDTO, String message) {
+        Person personToSave = personMapper.toModel(personDTO);
         Person savedPerson = personRepository.save(personToSave);
+
         return MessageResponseDTO
                 .builder()
-                .message("Pessoa criada com ID " + savedPerson.getId())
+                .message(message + savedPerson.getId())
                 .build();
     }
 
@@ -47,7 +57,6 @@ public class PersonService {
             personDTOList.add(personDTO);
         }
         */
-
         return personRepository.findAll().stream()
                 .map(personMapper::toDTO) //.map(person -> personMapper.toDTO(person))
                 .collect(Collectors.toList());
@@ -59,14 +68,18 @@ public class PersonService {
         if (person.isEmpty()) {
             throw new PersonNotFoundException(id);
         }*/
-        Person person = personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException(id));
-
+        Person person = verifyIfExists(id);
         return personMapper.toDTO(person);
     }
 
     public void delete(Long id) throws PersonNotFoundException {
-        boolean existsPerson = findById(id) != null;
+        verifyIfExists(id);
         personRepository.deleteById(id);
     }
+
+    public Person verifyIfExists(Long id) throws PersonNotFoundException {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+    }
+
 }
