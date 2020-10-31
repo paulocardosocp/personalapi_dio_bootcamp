@@ -33,7 +33,7 @@ public class PersonService {
         return save(personDTO, "Pessoa criada com o ID ");
     }
 
-    public MessageResponseDTO updatePerson(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+    public MessageResponseDTO updatePerson(PersonDTO personDTO, Long id) throws PersonNotFoundException {
         verifyIfExists(id);
 
         return save(personDTO, "Pessoa atualizada com ID ");

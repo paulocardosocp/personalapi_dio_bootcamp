@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/people")
+@RequestMapping("/api/v2/person")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
@@ -27,9 +27,9 @@ public class PersonController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MessageResponseDTO updatePerson(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO)
+    public MessageResponseDTO updatePerson(@RequestBody @Valid PersonDTO personDTO, @PathVariable Long id)
             throws PersonNotFoundException {
-        return personService.updatePerson(id, personDTO);
+        return personService.updatePerson(personDTO, id);
     }
 
     @GetMapping
