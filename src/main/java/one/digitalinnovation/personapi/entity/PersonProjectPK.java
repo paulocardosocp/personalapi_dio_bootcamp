@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Embeddable
@@ -15,13 +14,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class PersonProjectPK implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "PERSON_ID", insertable = false, updatable = false)
-    private Person person;
+    @Column(name = "person_id")
+    private Long personId;
 
-    @ManyToOne
-    @JoinColumn(name = "PROJECT_ID", insertable = false, updatable = false)
-    private Project project;
-
-
+    @Column(name = "project_id")
+    private Long projectId;
 }

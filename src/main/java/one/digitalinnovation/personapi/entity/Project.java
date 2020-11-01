@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,9 +22,9 @@ public class Project {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<PersonProject> personProject;
+    @OneToMany(mappedBy = "project")
+    private Set<PersonProject> personProject;
 }
