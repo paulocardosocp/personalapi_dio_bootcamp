@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapi.service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.dto.resquest.DepartmentDTO;
 import one.digitalinnovation.personapi.entity.Department;
@@ -13,9 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DepartmentService {
 
-    @Autowired
     private DepartmentRepository departmentRepository;
 
     private final DepartmentMapper departmentMapper = DepartmentMapper.INSTANCE;

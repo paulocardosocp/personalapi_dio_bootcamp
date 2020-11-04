@@ -22,9 +22,10 @@ public class Project {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Department department;
 
     @OneToMany(mappedBy = "project")
     private Set<PersonProject> personProject;
+
 }

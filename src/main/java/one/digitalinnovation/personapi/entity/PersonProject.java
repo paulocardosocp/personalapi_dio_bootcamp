@@ -12,17 +12,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class PersonProject {
 
-    @EmbeddedId
-    private PersonProjectPK id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PERSON_ID", insertable = false, updatable = false)
-    @MapsId("personId")
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 
     @ManyToOne
-    @JoinColumn(name = "PROJECT_ID", insertable = false, updatable = false)
-    @MapsId("projectId")
+    @JoinColumn(name = "PROJECT_ID")
     private Project project;
 
     @Column(nullable = false)
