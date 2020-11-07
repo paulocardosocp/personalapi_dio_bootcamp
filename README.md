@@ -1,5 +1,5 @@
-<h2>API REST de um sistema de gerenciamento de pessoas em com Spring Boot</h2>
-<h4>Projeto do bootcamp *Java Developer*, da Digital Innovation One com Rodrigo Peleias</h4>
+<h2>API REST de um sistema de gerenciamento de pessoas com Spring Boot</h2>
+<h4>Projeto do bootcamp Java Developer, da Digital Innovation One com Rodrigo Peleias</h4>
 
 O projeto desenvolvido utiliza:
 
