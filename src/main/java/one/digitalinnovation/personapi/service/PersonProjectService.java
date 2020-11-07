@@ -18,6 +18,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Classe que representa o serviço que possui as operações
+ * que abrangem simultaneamente pessoa e projeto.
+ */
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonProjectService {
@@ -30,6 +34,14 @@ public class PersonProjectService {
 
     private final PersonProjectMapper personProjectMapper = PersonProjectMapper.INSTANCE;
 
+    /**
+     * Inclui pessoas em um projeto depois de verificar se todas as pessoas e o projeto
+     * foram previamente cadastrados
+     * @param personProjectDTOList Lista contendo as pessoas e o projeto
+     * @return
+     * @throws PersonNotFoundException
+     * @throws ProjectNotFoundException
+     */
     public MessageResponseDTO addPeopleToProject(List<PersonProjectDTO> personProjectDTOList)
             throws PersonNotFoundException, ProjectNotFoundException {
 
@@ -54,6 +66,12 @@ public class PersonProjectService {
                 .build();
     }
 
+    /**
+     * Lista as pessoas pertencentes a um projeto
+     * @param idProject id do projeto para busca das pessoas
+     * @return Lista com as pessoas do projeto
+     * @throws ProjectNotFoundException
+     */
     public List<PersonDTO> listPeopleByProject(Long idProject) throws ProjectNotFoundException {
         Project project = projectService.verifyIfExists(idProject);
         List<PersonProject> personProjectList = personProjectRepository.findByProject(project);
@@ -63,6 +81,12 @@ public class PersonProjectService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Lista os projetos por pessoa
+     * @param idPerson id da pessoa para busca dos projetos
+     * @return Lista com os projetos da pessoa
+     * @throws PersonNotFoundException
+     */
     public List<ProjectDTO> listProjectsByPerson(Long idPerson) throws PersonNotFoundException {
         Person person = personService.verifyIfExists(idPerson);
         List<PersonProject> personProjectList = personProjectRepository.findByPerson(person);

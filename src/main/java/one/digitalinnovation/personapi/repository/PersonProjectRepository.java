@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Interface Repository com métodos que seguem a convenção de nomes
+ * para serem implementados pelo Spring
+ */
 @Repository
 public interface PersonProjectRepository extends JpaRepository<PersonProject, Long> {
 

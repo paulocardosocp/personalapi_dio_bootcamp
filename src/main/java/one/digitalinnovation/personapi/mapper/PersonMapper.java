@@ -6,6 +6,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * Interface que traduz a classe entidade Person em uma classe DTO
+ * equivalente e vice-versa.
+ */
 @Mapper
 public interface PersonMapper {
 

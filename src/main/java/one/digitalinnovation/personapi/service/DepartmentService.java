@@ -22,14 +22,35 @@ public class DepartmentService {
     private final DepartmentMapper departmentMapper = DepartmentMapper.INSTANCE;
 
     public MessageResponseDTO createDepartment(DepartmentDTO departmentDTO) {
-        return save(departmentDTO, "Departamento criado com ID ");
+        return this.save(departmentDTO, "Departamento criado com ID ");
     }
 
     public MessageResponseDTO updateDepartment(DepartmentDTO departmentDTO, Long id)
             throws DepartmentNotFoundException {
-        verifyIfExists(id);
+        this.verifyIfExists(id);
+        return this.save(departmentDTO, "Departamento atualizado com ID ");
+    }
 
-        return save(departmentDTO, "Departamento atualizado com ID ");
+    public List<DepartmentDTO> listAll() {
+        return departmentRepository.findAll()
+                .stream().map(departmentMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public DepartmentDTO findById(Long id) throws DepartmentNotFoundException {
+        Department department = this.verifyIfExists(id);
+        return departmentMapper.toDTO(department);
+    }
+
+    public void deleteById(Long id)
+            throws DepartmentNotFoundException {
+        this.verifyIfExists(id);
+        departmentRepository.deleteById(id);
+    }
+
+    public Department verifyIfExists(Long id) throws DepartmentNotFoundException {
+        return departmentRepository.findById(id)
+                .orElseThrow(() -> new DepartmentNotFoundException(id));
     }
 
     private MessageResponseDTO save(DepartmentDTO departmentDTO, String message) {
@@ -42,25 +63,4 @@ public class DepartmentService {
                 .build();
     }
 
-    public List<DepartmentDTO> listAll() {
-        return departmentRepository.findAll()
-                .stream().map(departmentMapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    public DepartmentDTO findById(Long id) throws DepartmentNotFoundException {
-        Department department = verifyIfExists(id);
-        return departmentMapper.toDTO(department);
-    }
-
-    public Department verifyIfExists(Long id) throws DepartmentNotFoundException {
-        return departmentRepository.findById(id)
-                .orElseThrow(() -> new DepartmentNotFoundException(id));
-    }
-
-    public void deleteById(Long id)
-            throws DepartmentNotFoundException {
-        verifyIfExists(id);
-        departmentRepository.deleteById(id);
-    }
 }

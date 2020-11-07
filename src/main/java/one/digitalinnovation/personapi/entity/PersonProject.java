@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Classe que representa a entidade surgida com o
+ * relacionamento N:M entre Person e Project
+ */
 @Entity
 @Data
 @NoArgsConstructor

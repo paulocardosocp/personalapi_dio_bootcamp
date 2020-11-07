@@ -5,6 +5,10 @@ import one.digitalinnovation.personapi.entity.Project;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * Interface que traduz a classe entidade Project em uma classe DTO
+ * equivalente e vice-versa.
+ */
 @Mapper
 public interface ProjectMapper {
 

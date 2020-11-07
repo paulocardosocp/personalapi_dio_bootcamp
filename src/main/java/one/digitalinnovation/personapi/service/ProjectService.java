@@ -37,12 +37,12 @@ public class ProjectService {
     }
 
     public ProjectDTO findById(Long id) throws ProjectNotFoundException {
-        Project project = verifyIfExists(id);
+        Project project = this.verifyIfExists(id);
         return projectMapper.toDTO(project);
     }
 
     public void deleteById(Long id) throws ProjectNotFoundException {
-        verifyIfExists(id);
+        this.verifyIfExists(id);
         projectRepository.deleteById(id);
     }
 
