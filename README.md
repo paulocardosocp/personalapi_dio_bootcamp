@@ -36,8 +36,8 @@ Exemplos de entrada
 * Endpoint: http://localhost:8080/api/v2/person (POST)
 ```
 {
-	"firstName":"Kakashi",
-	"lastName":"Hataki",
+	"firstName":"Hashirama",
+	"lastName":"Senju",
 	"cpf":"095.046.470-81",
 	"birthDate":"01-01-1984",
 	"phones":
@@ -51,14 +51,14 @@ Exemplos de entrada
 * Endpoint: http://localhost:8080/api/v2/department (POST)
 ```
 {
-    "description": "Aldeia da Folha"
+    "description": "Konohagakure"
 }
 ```
 
 * Endpoint: http://localhost:8080/api/v2/project (POST)
 ```
 {
-    "title":"Montagem da Prova Chunin",
+    "title":"1a. Grande Guerra",
     "department":
         {
             "id":1
@@ -71,8 +71,8 @@ Exemplos de entrada
 [{
     "person": {
         "id": 1,
-        "firstName":"Kakashi",
-        "lastName":"Hataki",
+        ""firstName":"Hashirama",
+		"lastName":"Senju",
         "cpf":"095.046.470-81",
         "birthDate":"01-01-1984",
         "phones":
@@ -83,7 +83,7 @@ Exemplos de entrada
     },
     "project": {
         "id": 1,
-        "title": "Montagem da Prova Chunin",
+        "title": "1a. Grande Guerra",
         "department": {
             "id":1
         }
