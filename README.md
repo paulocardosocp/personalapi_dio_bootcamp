@@ -51,14 +51,14 @@ Exemplos de entrada
 * Endpoint: http://localhost:8080/api/v2/department (POST)
 ```
 {
-    "description": "Konohagakure"
+    "description":"Konohagakure"
 }
 ```
 
 * Endpoint: http://localhost:8080/api/v2/project (POST)
 ```
 {
-    "title":"1a. Grande Guerra",
+    "title":"1st Great War",
     "department":
         {
             "id":1
@@ -70,8 +70,8 @@ Exemplos de entrada
 ```
 [{
     "person": {
-        "id": 1,
-        ""firstName":"Hashirama",
+        "id":1,
+		"firstName":"Hashirama",
 		"lastName":"Senju",
         "cpf":"095.046.470-81",
         "birthDate":"01-01-1984",
@@ -82,8 +82,8 @@ Exemplos de entrada
         }]
     },
     "project": {
-        "id": 1,
-        "title": "1a. Grande Guerra",
+        "id":1,
+        "title": "1st Great War",
         "department": {
             "id":1
         }
